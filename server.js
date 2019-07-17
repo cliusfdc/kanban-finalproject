@@ -1,3 +1,6 @@
+// dotenv -> see ./.env file for environment variables
+require('dotenv').config();
+
 const express = require("express");
 
 const PORT = process.env.PORT || 8000;
@@ -20,8 +23,8 @@ const socket = io.on("connection", function(socket) {
 // Platform Events
 conn.authenticate(
   {
-    username: "omcclave@trilogybootcamp2019.demo",
-    password: "salesforce1sQYFTwwrmISkOZ2wuyavD2MZw"
+    username: process.env.SF_USERNAME,
+    password: process.env.SF_PASSWORD
   },
   function(err, oauth) {
     if (err) return console.log(err);
