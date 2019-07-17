@@ -1,12 +1,13 @@
 {
-  "name": "01-inst_express-server",
+  "name": "kanban-finalproject",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "npm run build && node server.js",
     "build": "polymer build",
-    "start": "npm run build && node server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "express": "^4.17.1",
     "http": "0.0.0",
     "nforce": "^1.12.2",
+    "polymer-cli": "1.9.10",
     "socket.io": "^2.2.0",
     "web-animations-js": "^2.3.1"
   }

@@ -1,4 +1,4 @@
-// dotenv -> see ./.env file for environment variables
+// dotenv -> see .env file for environment variables
 require('dotenv').config();
 
 const express = require("express");
@@ -17,7 +17,7 @@ app.use(express.static("build/es6-unbundled"));
 
 // get a reference to the socket once a client connects
 const socket = io.on("connection", function(socket) {
-  console.log("client connected");
+  console.log("socket.io client connected");
 });
 
 // Platform Events
@@ -42,6 +42,7 @@ conn.authenticate(
     });
 
     taskAdded.on("data", function(data) {
+      console.log("server.js: Task_Added__e platform event received. Data:");
       console.log(data);
       socket.emit("task added", data);
     });
@@ -53,10 +54,11 @@ conn.authenticate(
     });
 
     taskUpdated.on("data", function(data) {
+      console.log("server.js: Task_Updated__e platform event received. Data:");
       console.log(data);
       socket.emit("task updated", data);
     });
-    // ** Added for deleting task (added a platform event)**
+    // ** Added for task delete event (added a platform event)**
     const taskDeleted = client.subscribe({
       topic: "Task_Deleted__e",
       isEvent: true,
@@ -64,6 +66,7 @@ conn.authenticate(
     });
 
     taskDeleted.on("data", function(data) {
+      console.log("server.js: Task_Deleted__e platform event received. Data:");
       console.log(data);
       socket.emit("task deleted", data);
     });
